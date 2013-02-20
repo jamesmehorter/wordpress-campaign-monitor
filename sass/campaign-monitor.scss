@@ -1,0 +1,52 @@
+form.campaign-monitor {
+	input {
+		padding: 2px 5px 2px 5px ;
+		background-color: rgb(240,240,240) ;
+		border: 1px solid rgb(200,200,200) ;
+		font-size: 0.85em ;
+		color: #004250 ;
+		width: 180px ;
+		margin-top: 5px ;
+
+		&.captcha {
+			width: 50px ;
+		}
+		&.submit {
+			float: left ;
+			width: 75px ;
+			margin-top: 15px ;
+			cursor: pointer ;
+			text-align: center;
+		}
+		&:hover, &:active {
+			background-color: rgb(230,230,230) ;
+			border: 1px solid rgb(190,190,190) ;
+		}
+		&.invalid {
+			background-color: #feedb5 ;
+		}
+	}
+	div.subscription-loader {
+		float: left ;
+		width: 16px ;
+		height: 16px ;
+		margin-top: 15px ;
+		margin-left: 10px ;
+		background-image: image_url('assets/loader.gif');
+		display: none ;
+	}
+	div.subscription-output {
+		margin-top: 15px ;
+		display: inline-block ;
+		padding: 5px ;
+
+		&.success {
+			color: #59703d ;
+			background-color: #b9e3b7 ;
+		}
+		&.fail {
+			color: #eb4d29 ;
+			background-color: #feedb5 ;
+		}
+	}//#cm-subscriber-output
+}//.enews-subscription-form

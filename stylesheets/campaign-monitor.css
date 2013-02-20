@@ -1,0 +1,57 @@
+/* line 2, ../sass/campaign-monitor.scss */
+form.campaign-monitor input {
+  padding: 2px 5px 2px 5px;
+  background-color: #f0f0f0;
+  border: 1px solid #c8c8c8;
+  font-size: 0.85em;
+  color: #004250;
+  width: 180px;
+  margin-top: 5px;
+}
+/* line 11, ../sass/campaign-monitor.scss */
+form.campaign-monitor input.captcha {
+  width: 50px;
+}
+/* line 14, ../sass/campaign-monitor.scss */
+form.campaign-monitor input.submit {
+  float: left;
+  width: 75px;
+  margin-top: 15px;
+  cursor: pointer;
+  text-align: center;
+}
+/* line 21, ../sass/campaign-monitor.scss */
+form.campaign-monitor input:hover, form.campaign-monitor input:active {
+  background-color: #e6e6e6;
+  border: 1px solid #bebebe;
+}
+/* line 25, ../sass/campaign-monitor.scss */
+form.campaign-monitor input.invalid {
+  background-color: #feedb5;
+}
+/* line 29, ../sass/campaign-monitor.scss */
+form.campaign-monitor div.subscription-loader {
+  float: left;
+  width: 16px;
+  height: 16px;
+  margin-top: 15px;
+  margin-left: 10px;
+  background-image: url('/images/assets/loader.gif');
+  display: none;
+}
+/* line 38, ../sass/campaign-monitor.scss */
+form.campaign-monitor div.subscription-output {
+  margin-top: 15px;
+  display: inline-block;
+  padding: 5px;
+}
+/* line 43, ../sass/campaign-monitor.scss */
+form.campaign-monitor div.subscription-output.success {
+  color: #59703d;
+  background-color: #b9e3b7;
+}
+/* line 47, ../sass/campaign-monitor.scss */
+form.campaign-monitor div.subscription-output.fail {
+  color: #eb4d29;
+  background-color: #feedb5;
+}
