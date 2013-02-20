@@ -17,16 +17,21 @@
 	#
 	########################################
 
-	$campaign_monitor_js_settings = array( 
-		'site_url' => get_bloginfo('url')
-	);
+	//Load the theme styles and scripts scripts
+	add_action('wp_enqueue_scripts', 'campaign_monitor_styles_and_scripts');
+	function campaign_monitor_styles_and_scripts() {
+		//Scripts
+		wp_register_script('campaign-monitor', plugins_url('scripts/campaign-monitor.js', __FILE__), 'jquery', '', true);
+		wp_enqueue_script('campaign-monitor');
 
-	wp_register_script('campaign-monitor', plugins_url() . "campaign-monitor/scripts/campaign-monitor.js", 'jquery', '', true);
-	wp_enqueue_script('jcampaign-monitor');
-	wp_localize_script('campaign-monitor', 'campaign_monitor', $campaign_monitor_js_settings );
+		//Script Variables
+		$campaign_monitor_js_settings = array('site_url' => get_bloginfo('url'));
+		wp_localize_script('campaign-monitor', 'campaign_monitor', $campaign_monitor_js_settings );
 
-	wp_register_style('campaign-monitor', plugins_url() . "campaign-monitor/stylesheets/campaign-monitor.css");
-	wp_enqueue_style('campaign-monitor');
+		//Styles
+		wp_register_style('campaign-monitor', plugins_url('stylesheets/campaign-monitor.css', __FILE__));
+		wp_enqueue_style('campaign-monitor');
+	}
 
 	########################################
 	# 
@@ -34,8 +39,8 @@
 	#
 	########################################
 
-	add_shortcode('enews-subscription-form', 'enews_subscription_form');
-	function enews_subscription_form ($atts) { 
+	add_shortcode('campaign-monitor', 'campaign_monitor_shortcode');
+	function campaign_monitor_shortcode ($atts) { 
 		//We'll use Output buffering here to keep the code below cleaner and easier to maintain
 		ob_start(); 
 		?>
@@ -78,7 +83,7 @@
 		//Clear the output buffer
 		ob_end_clean();
 		return $html_output;
-	}
+	}//campaign_monitor_shortcode()
 
 	########################################
 	# 
@@ -87,12 +92,12 @@
 	########################################
 
 	//Process new Campaign Monitor Subscriptions - add_subscriber is the 'action' used in the $.ajax() call
-	add_action('wp_ajax_nopriv_add_enews_subscriber', 'add_enews_subscriber');
-	add_action('wp_ajax_add_enews_subscriber', 'add_enews_subscriber');
+	add_action('wp_ajax_nopriv_campaign_monitor_add_subscriber', 'campaign_monitor_add_subscriber');
+	add_action('wp_ajax_campaign_monitor_add_subscriber', 'campaign_monitor_add_subscriber');
 
 	//Add new Campaign Monitor subscribers
 	//This function is triggered via ajax when users submit the subscription form on the blog sidebar
-	function add_enews_subscriber () {
+	function campaign_monitor_add_subscriber () {
 		//Load the Campaign Monitor API 
 		include('api/csrest_subscribers.php');
 		//Connect to the CM API with the GO Logic subscriber list ID and API key
@@ -102,7 +107,7 @@
 		*/
 		$wrap = new CS_REST_Subscribers($_REQUEST['Listid'], '474c5ff0c27ac3030c897b8e68e5efd3');
 		//Check if the user is already subscribed to this list
-		$check_already_subscribed = $wrap->get($_REQUEST['email']);
+		$check_already_subscribed = $wrap->get($_REQUEST['Email']);
 		if ($check_already_subscribed->response->State == 'Active') : 
 			//The user is already in the chosen list
 			$status = 1;

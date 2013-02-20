@@ -36,7 +36,7 @@ form.campaign-monitor div.subscription-loader {
   height: 16px;
   margin-top: 15px;
   margin-left: 10px;
-  background-image: url('/images/assets/loader.gif');
+  background-image: url("../images/loader.gif");
   display: none;
 }
 /* line 38, ../sass/campaign-monitor.scss */

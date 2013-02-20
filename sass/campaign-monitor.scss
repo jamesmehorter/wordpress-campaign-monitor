@@ -32,7 +32,7 @@ form.campaign-monitor {
 		height: 16px ;
 		margin-top: 15px ;
 		margin-left: 10px ;
-		background-image: image_url('assets/loader.gif');
+		background-image: url('../images/loader.gif');
 		display: none ;
 	}
 	div.subscription-output {
@@ -49,4 +49,4 @@ form.campaign-monitor {
 			background-color: #feedb5 ;
 		}
 	}//#cm-subscriber-output
-}//.enews-subscription-form
+}//.form.campaign-monitor

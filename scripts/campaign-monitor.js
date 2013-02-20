@@ -68,11 +68,14 @@
 
 					//POST the AJAX request
 					$.ajax({
-						url: wcgh_settings.site_url + '/wp-admin/admin-ajax.php',
+						url: campaign_monitor.site_url + '/wp-admin/admin-ajax.php',
 						type: 'POST',
-						data: $('form.enews-subscription-form').serialize() + '&action=add_enews_subscriber', 
+						data: $('form.campaign-monitor').serialize() + '&action=campaign_monitor_add_subscriber', 
 						dataType: 'json',
 						success: function(response) {
+							//hide the loading animation
+							$('.subscription-loader').fadeOut(500)
+
 							switch (response.status) {
 								case 0: 
 									//submission invalid
@@ -80,14 +83,10 @@
 								break;
 								case 1:
 									//submission successful - already subscribed
-									//hide the loading animation
-									$('.subscription-loader').fadeOut(500)
 									output_container.removeClass('fail').addClass('success');				
 								break;
 								case 2:
 									//submission successful - added new subscriber
-									//hide the loading animation
-									$('.subscription-loader').fadeOut(500)
 									output_container.removeClass('fail').addClass('success');				
 								break;
 							}
@@ -107,4 +106,4 @@
 		var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 		return regex.test(email);
 	}
-})
+})(jQuery)
